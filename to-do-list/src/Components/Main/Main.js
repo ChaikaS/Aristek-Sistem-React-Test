@@ -20,7 +20,7 @@ export default function Main() {
         <InputForm inputText={inputText} setInputText={setInputText} todoTasks={todoTasks} setTodoTasks={setTodoTasks} uuid={uuid} />
         <div className="main__total-count">Total: {todoTasks.length}</div>
         <div className="main__added-count">To do ({todoTasks.length})</div>
-        <TodoList todoTasks={todoTasks} />
+        <TodoList todoTasks={todoTasks} setTodoTasks={setTodoTasks} />
       </div>
       <div className="complited-list">
         <div>Complited ({countComplited})</div>
