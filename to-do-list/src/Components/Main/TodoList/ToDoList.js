@@ -1,9 +1,12 @@
-import "./toDoList.scss";
+import TodoItem from "../TodoItem/TodoItem";
+import "./todoList.scss";
 
-export default function ToDoList({ inputText }) {
+export default function TodoList({ todoTasks }) {
   return (
-    <div className="todo__conteiner">
-      <ul className="todo__list">{inputText}</ul>
+    <div className="main__list-items">
+      {todoTasks.map((item) => (
+        <TodoItem text={item.text} key={item.id.uuid} />
+      ))}
     </div>
   );
 }

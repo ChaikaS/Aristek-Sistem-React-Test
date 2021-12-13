@@ -2,7 +2,6 @@ import "./inputForm.scss";
 
 export default function InputForm({ inputText, setInputText, todoTasks, setTodoTasks, uuid }) {
   const inputTextHandler = (e) => {
-    console.log(e.target.value);
     setInputText(e.target.value);
   };
   const submitToDoHandler = (e) => {

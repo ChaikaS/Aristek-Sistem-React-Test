@@ -17,13 +17,14 @@
 .main__input-todo input {
   width: 100%;
   height: 40px;
+  padding-left: 12px;
+
   border: 1px solid #ececec;
   background: #ffffff;
   box-sizing: border-box;
   border-radius: 4px;
 }
 .main__input-todo input::placeholder {
-  padding-left: 12px;
   font-weight: normal;
   font-size: 14px;
   line-height: 19px;
