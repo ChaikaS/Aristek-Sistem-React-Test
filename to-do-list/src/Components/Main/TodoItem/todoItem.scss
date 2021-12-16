@@ -13,7 +13,9 @@
   margin-right: 8px;
   cursor: pointer;
 }
-
+.completed {
+  text-decoration: line-through;
+}
 .todo__text {
   overflow: hidden;
   margin: 14.5px 8px 14.5px 0;

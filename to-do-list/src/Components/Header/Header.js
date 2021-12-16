@@ -3,9 +3,9 @@ import contentImageLogo from "../../Image/logo.png";
 import contentImageUser from "../../Image/image-user.png";
 import contentImageBurgerMenu from "../../Image/image-burger-menu.png";
 export default function Header() {
-  const imageLogo = <img src={contentImageLogo} alt="" />;
-  const imageUser = <img src={contentImageUser} alt="" />;
-  const imageBurgerMenu = <img src={contentImageBurgerMenu} alt="" />;
+  const imageLogo = <img src={contentImageLogo} alt={"images logo"} />;
+  const imageUser = <img src={contentImageUser} alt={"images user"} />;
+  const imageBurgerMenu = <img src={contentImageBurgerMenu} alt={"images burger"} />;
   return (
     <header className="header__conteiner">
       <div className="header__logo">
