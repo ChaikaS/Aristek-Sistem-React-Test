@@ -18,10 +18,12 @@ export default function TodoItem({ item, text, todoTasks, setTodoTasks, todoComp
             completed: !item.completed,
           };
         }
+        todoCompletedTasks.push(item);
 
         return el;
       })
     );
+    // setTodoTasks(todoTasks.filter((el) => el.id.uuid !== item.id.uuid));
   };
   const editHandler = () => {
     setTodoTasks(
@@ -38,9 +40,7 @@ export default function TodoItem({ item, text, todoTasks, setTodoTasks, todoComp
   };
   useEffect(() => {
     if (item.completed === true) {
-      console.log("true");
       todoCompletedTasks.push(item);
-      setTodoTasks(todoTasks.filter((el) => el.id.uuid !== item.id.uuid));
     }
   }, [todoTasks]);
 
@@ -48,7 +48,6 @@ export default function TodoItem({ item, text, todoTasks, setTodoTasks, todoComp
     <div className="todo__item">
       <input onClick={completeHandler} type="checkbox" className="todo__checkbox " />
       <label className={`todo__text ${item.completed ? "completed" : ""}`}>{text}</label>
-      {/* <label className={`todo__text `}>{text}</label> */}
       <div onClick={editHandler} className="todo__edit-icon">
         {editIcon}
       </div>
