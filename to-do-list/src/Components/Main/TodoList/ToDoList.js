@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import TodoItem from "../TodoItem/TodoItem";
-import "./todoList.scss";
 
 export default function TodoList() {
   const todoList = useSelector((state) => state.todoList);

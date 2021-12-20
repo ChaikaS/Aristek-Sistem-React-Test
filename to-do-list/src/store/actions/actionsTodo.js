@@ -9,7 +9,6 @@ export const UPDATE_TODO_TEXT = "UPDATE_TODO_TEXT";
 export const UPDATE_INPUT_TEXT = "UPDATE_INPUT_TEXT";
 export const SAVE_UPDATE_INPUT_TEXT = "SAVE_UPDATE_INPUT_TEXT";
 export const NULL_UPDATE_INPUT_TEXT = "NULL_UPDATE_INPUT_TEXT";
-// export const CURRENT_INPUT_TEXT = "CURRENT_INPUT_TEXT";
 
 function createdTodoItem(text, id) {
   return {
@@ -65,16 +64,6 @@ function postToTodoList(item) {
     },
   };
 }
-// function updateTodoItem(text, id, edit) {
-//   return {
-//     type: UPDATE_TODO_TEXT,
-//     payload: {
-//       text,
-//       id,
-//       edit,
-//     },
-//   };
-// }
 function updateInputText(text, id) {
   return {
     type: UPDATE_INPUT_TEXT,
@@ -99,20 +88,11 @@ function nullUpdateInputText(object) {
     payload: { object },
   };
 }
-// function updateCurrentInputText(edit) {
-//   return {
-//     type: CURRENT_INPUT_TEXT,
-//     payload: {
-//       edit,
-//     },
-//   };
-// }
 
 export { createdTodoItem, completedTodoItem, deletedTodoItem, postToCompletedList, completedTodoItemCompletedList, deletedTodoItemCompletedList, postToTodoList, updateInputText, saveUpdateInputText, nullUpdateInputText };
 
 export const postItemToCompletedList = (id, item, completed, edit) => {
   return (dispatch) => {
-    console.log(item);
     if (completed === false) {
       dispatch(postToCompletedList(item));
       dispatch(completedTodoItemCompletedList(id));
@@ -124,16 +104,3 @@ export const postItemToCompletedList = (id, item, completed, edit) => {
     }
   };
 };
-// export const updateTodoItems = (text, id, inputText) => {
-//   return (dispatch) => {
-//     // console.log(currentInputText);
-//     console.log(text);
-//     console.log(id);
-//     console.log(inputText);
-
-//     // dispatch(updateTodoItem(text, id, edit));
-//     dispatch(updateInputText(text, id));
-//     // dispatch(saveUpdateInputText(text, id));
-//     // dispatch(updateCurrentInputText(currentInputText));
-//   };
-// };
