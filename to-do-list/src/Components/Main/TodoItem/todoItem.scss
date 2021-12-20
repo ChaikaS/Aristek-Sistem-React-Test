@@ -1,8 +1,9 @@
 .todo__item {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   min-height: 48px;
+  margin-top: 8px;
   margin-bottom: 16px;
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.08);
   border-radius: 4px;
@@ -16,7 +17,11 @@
 .completed {
   text-decoration: line-through;
 }
+.display-none {
+  display: none;
+}
 .todo__text {
+  width: 100%;
   overflow: hidden;
   margin: 14.5px 8px 14.5px 0;
 }
