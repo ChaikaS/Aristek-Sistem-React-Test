@@ -8,13 +8,12 @@ export default function InputForm() {
   const inputForm = useSelector((state) => state.inputForm);
   const [inputText, setInputText] = useState("");
   const [inputDirty, setInputDirty] = useState(false);
-  const [inputError, setInputError] = useState("Please, enter text");
+  const [inputError] = useState("Please, enter text");
   const uuid = uuidv4();
   const dispatch = useDispatch();
 
   const addItemHandler = () => {
     if (inputText === "") {
-      console.log("null");
       setInputDirty(true);
     } else {
       setInputDirty(false);
@@ -29,11 +28,10 @@ export default function InputForm() {
     dispatch(updateInputText(e.target.value, inputForm?.id));
   };
   const saveInputTextHandler = () => {
-    dispatch(saveUpdateInputText(inputForm?.text, inputForm?.id));
+    dispatch(saveUpdateInputText(inputForm?.title, inputForm?.id));
     dispatch(nullUpdateInputText(inputForm));
     setInputDirty(false);
   };
-  console.log(inputDirty);
 
   return (
     <div className="main__input-todo">
@@ -47,7 +45,7 @@ export default function InputForm() {
         </>
       ) : (
         <>
-          <input value={inputForm?.text} type="text" onChange={editInputTextHandler} />
+          <input value={inputForm?.title} type="text" onChange={editInputTextHandler} />
           <button type="submit" onClick={saveInputTextHandler}>
             Save
           </button>

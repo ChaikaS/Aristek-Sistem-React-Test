@@ -7,8 +7,8 @@ const initialState = {
 export default function todoTasks(state = initialState.todoTasks, action) {
   switch (action.type) {
     case ADD_ITEM: {
-      const { text, completed, id, edit } = action.payload;
-      return [...state, { text, completed, id, edit }];
+      const { title, completed, id, edit } = action.payload;
+      return [...state, { title, completed, id, edit }];
     }
     case COMPLETED_ITEM: {
       return [...state.map((el) => (el.id.uuid === action.payload.id ? { ...el, completed: !el.completed } : el))];
@@ -24,8 +24,8 @@ export default function todoTasks(state = initialState.todoTasks, action) {
       return newState;
     }
     case SAVE_UPDATE_INPUT_TEXT: {
-      const { text, id } = action.payload;
-      return [...state.map((el) => (el.id.uuid === id ? { ...el, text: text } : el))];
+      const { title, id } = action.payload;
+      return [...state.map((el) => (el.id.uuid === id ? { ...el, title: title } : el))];
     }
     default:
       return state;

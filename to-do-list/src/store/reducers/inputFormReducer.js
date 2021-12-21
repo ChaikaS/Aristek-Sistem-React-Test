@@ -7,8 +7,8 @@ const initialState = {
 export default function inputForm(state = initialState.inputForms, action) {
   switch (action.type) {
     case UPDATE_INPUT_TEXT: {
-      const { text, id } = action.payload;
-      return { text, id };
+      const { title, id } = action.payload;
+      return { title, id };
     }
     case NULL_UPDATE_INPUT_TEXT: {
       const { object } = action.payload;

@@ -8,7 +8,7 @@ export default function CompletedList() {
   return (
     <div className="main__list-items">
       {completedList.map((item) => (
-        <TodoItem text={item.text} key={item.id.uuid} item={item} />
+        <TodoItem title={item.title} key={item.id.uuid} item={item} />
       ))}
     </div>
   );

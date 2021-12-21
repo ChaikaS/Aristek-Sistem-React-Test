@@ -10,10 +10,10 @@ export const UPDATE_INPUT_TEXT = "UPDATE_INPUT_TEXT";
 export const SAVE_UPDATE_INPUT_TEXT = "SAVE_UPDATE_INPUT_TEXT";
 export const NULL_UPDATE_INPUT_TEXT = "NULL_UPDATE_INPUT_TEXT";
 
-function createdTodoItem(text, id) {
+function createdTodoItem(title, id) {
   return {
     type: ADD_ITEM,
-    payload: { text: text, completed: false, id: id, edit: false },
+    payload: { title: title, completed: false, id: id, edit: false },
   };
 }
 function completedTodoItem(id) {
@@ -64,20 +64,20 @@ function postToTodoList(item) {
     },
   };
 }
-function updateInputText(text, id) {
+function updateInputText(title, id) {
   return {
     type: UPDATE_INPUT_TEXT,
     payload: {
-      text,
+      title,
       id,
     },
   };
 }
-function saveUpdateInputText(text, id) {
+function saveUpdateInputText(title, id) {
   return {
     type: SAVE_UPDATE_INPUT_TEXT,
     payload: {
-      text,
+      title,
       id,
     },
   };
@@ -90,17 +90,3 @@ function nullUpdateInputText(object) {
 }
 
 export { createdTodoItem, completedTodoItem, deletedTodoItem, postToCompletedList, completedTodoItemCompletedList, deletedTodoItemCompletedList, postToTodoList, updateInputText, saveUpdateInputText, nullUpdateInputText };
-
-export const postItemToCompletedList = (id, item, completed, edit) => {
-  return (dispatch) => {
-    if (completed === false) {
-      dispatch(postToCompletedList(item));
-      dispatch(completedTodoItemCompletedList(id));
-      dispatch(deletedTodoItem(id));
-    } else {
-      dispatch(deletedTodoItemCompletedList(id));
-      dispatch(postToTodoList(item));
-      dispatch(completedTodoItem(id));
-    }
-  };
-};
