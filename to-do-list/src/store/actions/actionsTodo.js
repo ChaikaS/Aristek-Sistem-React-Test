@@ -9,6 +9,10 @@ export const UPDATE_TODO_TEXT = "UPDATE_TODO_TEXT";
 export const UPDATE_INPUT_TEXT = "UPDATE_INPUT_TEXT";
 export const SAVE_UPDATE_INPUT_TEXT = "SAVE_UPDATE_INPUT_TEXT";
 export const NULL_UPDATE_INPUT_TEXT = "NULL_UPDATE_INPUT_TEXT";
+export const REQUEST_TODO_LIST_DATA = "REQUEST_TODO_LIST_DATA";
+export const RECEIVE_TODO_LIST_DATA_ERROR_FALSE = "RECEIVE_TODO_LIST_DATA_ERROR_FALSE";
+export const RECEIVE_COMPLETED_TODO_LIST_DATA_ERROR_FALSE = "RECEIVE_COMPLETED_TODO_LIST_DATA_ERROR_FALSE";
+export const RECEIVE_TODO_LIST_DATA_ERROR_TRUE = "RECEIVE_TODO_LIST_DATA_ERROR_TRUE";
 
 function createdTodoItem(title, id) {
   return {
@@ -88,5 +92,40 @@ function nullUpdateInputText(object) {
     payload: { object },
   };
 }
-
-export { createdTodoItem, completedTodoItem, deletedTodoItem, postToCompletedList, completedTodoItemCompletedList, deletedTodoItemCompletedList, postToTodoList, updateInputText, saveUpdateInputText, nullUpdateInputText };
+// function requestTodoListData() {
+//   return {
+//     type: "REQUEST_TODO_LIST_DATA",
+//     payload: { isLoading: false, isError: false },
+//   };
+// }
+function receiveTodoListDataErrorFalse(json) {
+  return {
+    type: "RECEIVE_TODO_LIST_DATA_ERROR_FALSE",
+    payload: {
+      todoTasks: json.data,
+      // isError: false,
+      // errorMessage: "",
+    },
+  };
+}
+function receiveCompletedTodoListDataErrorFalse(json) {
+  return {
+    type: "RECEIVE_COMPLETED_TODO_LIST_DATA_ERROR_FALSE",
+    payload: {
+      todoTasks: json.data,
+      // isError: false,
+      // errorMessage: "",
+    },
+  };
+}
+function receiveTodoListDataErrorTrue(error) {
+  return {
+    type: "RECEIVE_TODO_LIST_DATA_ERROR_TRUE",
+    payload: {
+      todoTasks: [],
+      isError: true,
+      errorMessage: error,
+    },
+  };
+}
+export { createdTodoItem, completedTodoItem, deletedTodoItem, postToCompletedList, completedTodoItemCompletedList, deletedTodoItemCompletedList, postToTodoList, updateInputText, saveUpdateInputText, nullUpdateInputText, receiveTodoListDataErrorFalse, receiveTodoListDataErrorTrue, receiveCompletedTodoListDataErrorFalse };

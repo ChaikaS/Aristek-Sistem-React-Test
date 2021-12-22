@@ -1,5 +1,5 @@
-import axios from "axios";
-import { requestTodoListData, receiveTodoListDataErrorFalse, receiveTodoListDataErrorTrue } from "../actions/actionsApi.js";
+// import axios from "axios";
+// import { requestTodoListData, receiveTodoListDataErrorFalse, receiveTodoListDataErrorTrue } from "../actions/actionsApi.js";
 
 // const api =
 //   ({ dispatch }) =>
@@ -30,17 +30,31 @@ import { requestTodoListData, receiveTodoListDataErrorFalse, receiveTodoListData
 
 // export default api;
 
-export const requestTodoList = (url) => async (dispatch) => {
-  dispatch(requestTodoListData());
-  try {
-    const json = await axios.get(url);
-    dispatch(receiveTodoListDataErrorFalse(json));
-    console.log(json);
-  } catch (e) {
-    dispatch(receiveTodoListDataErrorTrue(e));
-  }
-};
-
+// export const requestTodoList = (url) => {
+//   return async (dispatch) => {
+//     dispatch(requestTodoListData());
+//     try {
+//       const json = await axios.get(url);
+//       dispatch(receiveTodoListDataErrorFalse(json));
+//       console.log(json);
+//     } catch (e) {
+//       dispatch(receiveTodoListDataErrorTrue(e));
+//     }
+//   };
+// };
+// export const postItemToCompletedList = (id, item, completed) => {
+//   return (dispatch) => {
+//     if (completed === false) {
+//       dispatch(postToCompletedList(item));
+//       dispatch(completedTodoItemCompletedList(id));
+//       dispatch(deletedTodoItem(id));
+//     } else {
+//       dispatch(deletedTodoItemCompletedList(id));
+//       dispatch(postToTodoList(item));
+//       dispatch(completedTodoItem(id));
+//     }
+//   };
+// };
 // export const requestUsers = (url) => async (dispatch) => {
 //    dispatch({
 //      type: "REQUEST_USERS_DATA",

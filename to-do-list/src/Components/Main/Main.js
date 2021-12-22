@@ -7,8 +7,8 @@ import { useSelector } from "react-redux";
 
 export default function Main() {
   const imageBar = <img src={contentImageBar} alt={"icon bar"} />;
-  const completedList = useSelector((state) => state.completedList);
-  const todoList = useSelector((state) => state.todoList);
+  const completedList = useSelector((state) => state.completedList.flat());
+  const todoList = useSelector((state) => state.todoList.flat());
 
   return (
     <div className="main__conteiner">

@@ -2,6 +2,7 @@ import "./inputForm.scss";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createdTodoItem, updateInputText, saveUpdateInputText, nullUpdateInputText } from "../../../store/actions/actionsTodo.js";
+import { postTodoItem } from "../../../store/middleware/middlewareTodo";
 import { v4 as uuidv4 } from "uuid";
 
 export default function InputForm() {
@@ -9,7 +10,6 @@ export default function InputForm() {
   const [inputText, setInputText] = useState("");
   const [inputDirty, setInputDirty] = useState(false);
   const [inputError] = useState("Please, enter text");
-  const uuid = uuidv4();
   const dispatch = useDispatch();
 
   const addItemHandler = () => {
@@ -17,7 +17,7 @@ export default function InputForm() {
       setInputDirty(true);
     } else {
       setInputDirty(false);
-      dispatch(createdTodoItem(inputText, { uuid }));
+      dispatch(postTodoItem(inputText, uuidv4()));
       setInputText("");
     }
   };
