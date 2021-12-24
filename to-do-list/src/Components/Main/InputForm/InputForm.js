@@ -1,7 +1,7 @@
 import "./inputForm.scss";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createdTodoItem, updateInputText, saveUpdateInputText, nullUpdateInputText } from "../../../store/actions/actionsTodo.js";
+import { updateInputText, saveUpdateInputText, nullUpdateInputText } from "../../../store/actions/actionsTodo.js";
 import { postTodoItem } from "../../../store/middleware/middlewareTodo";
 import { v4 as uuidv4 } from "uuid";
 

@@ -1,17 +1,10 @@
-import { ADD_ITEM, COMPLETED_ITEM, SAVE_UPDATE_INPUT_TEXT, DELETED_ITEM, POST_ITEM_TO_TODO_LIST, REQUEST_TODO_LIST_DATA, RECEIVE_TODO_LIST_DATA_ERROR_FALSE, RECEIVE_TODO_LIST_DATA_ERROR_TRUE } from "../actions/actionsTodo";
+import { ADD_ITEM, COMPLETED_ITEM, SAVE_UPDATE_INPUT_TEXT, DELETED_ITEM, POST_ITEM_TO_TODO_LIST, RECEIVE_TODO_LIST_DATA } from "../actions/actionsTodo";
 
 export const initialState = {
   todoTasks: [],
-  // isLoading: true,
-  // isError: false,
-  // errorMsg: "",
 };
 
 export default function todoTasks(state = initialState.todoTasks, action) {
-  console.log(action);
-  console.log(action.payload);
-  console.log(state);
-
   switch (action.type) {
     case ADD_ITEM: {
       const { completed, id, title } = action.payload;
@@ -34,11 +27,7 @@ export default function todoTasks(state = initialState.todoTasks, action) {
       const { id, title } = action.payload;
       return [...state.map((el) => (el.id === id ? { ...el, title: title } : el))];
     }
-    // case REQUEST_TODO_LIST_DATA: {
-    //   const { isLoading, isError } = action.payload;
-    //   return { ...state, isLoading: isLoading, isError: isError };
-    // }
-    case RECEIVE_TODO_LIST_DATA_ERROR_FALSE: {
+    case RECEIVE_TODO_LIST_DATA: {
       const arrTodoTasks = action.payload.todoTasks;
       const newState = [...state];
       arrTodoTasks.map((item) => {
@@ -48,46 +37,7 @@ export default function todoTasks(state = initialState.todoTasks, action) {
       });
       return newState;
     }
-    case RECEIVE_TODO_LIST_DATA_ERROR_TRUE: {
-      const { todoTasks, isError, errorMessage } = action.payload;
-      return [...state, { todoTasks: todoTasks, isError: isError, errorMessage: errorMessage }];
-    }
     default:
       return state;
   }
 }
-
-// import { REQUEST_TODO_LIST_DATA, RECEIVE_TODO_LIST_DATA_ERROR_FALSE, RECEIVE_TODO_LIST_DATA_ERROR_TRUE } from "../actions/actionsApi.js";
-
-// const initialState = {
-//   todoListData: [],
-//   isLoading: true,
-//   isError: false,
-// };
-
-// export default function reducer(state = initialState, action) {
-//   console.log(action);
-
-//   switch (action.type) {
-//     case REQUEST_TODO_LIST_DATA: {
-//       const { isLoading, isError } = action.payload;
-//       return { ...state, isLoading: isLoading, isError: isError };
-//     }
-//     case RECEIVE_TODO_LIST_DATA_ERROR_FALSE: {
-//       const { todoListData, isLoading, isError, errorMessage } = action.payload;
-//       console.log(action.payload);
-
-//       console.log(todoListData);
-//       console.log(state);
-
-//       return [...state, { todoListData: todoListData, isLoading: isLoading, isError: isError, errorMessage: errorMessage }];
-//     }
-//     case RECEIVE_TODO_LIST_DATA_ERROR_TRUE: {
-//       const { todoListData, isLoading, isError, errorMessage } = action.payload;
-
-//       return [...state, { todoListData: todoListData, isLoading: isLoading, isError: isError, errorMessage: errorMessage }];
-//     }
-//     default:
-//       return state;
-//   }
-// }

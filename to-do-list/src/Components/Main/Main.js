@@ -13,15 +13,17 @@ export default function Main() {
   return (
     <div className="main__conteiner">
       <div className="main__bar">{imageBar}</div>
-      <div className="main__todo-list">
-        <InputForm />
-        <div className="main__total-count">Total: {todoList.length + completedList.length}</div>
-        <div className="main__added-count">To do ({todoList.length})</div>
-        <TodoList />
-      </div>
-      <div className="complited-list">
-        <div>Completed ({completedList.length})</div>
-        <CompletedList />
+      <div className="main__conteiner-todo-list">
+        <div className="main__todo-list">
+          <InputForm />
+          <div className="main__total-count">Total: {todoList.length + completedList.length}</div>
+          <div className="main__added-count">To do ({todoList.length})</div>
+          <TodoList />
+        </div>
+        <div className="complited-list">
+          <div>Completed ({completedList.length})</div>
+          <CompletedList />
+        </div>
       </div>
     </div>
   );

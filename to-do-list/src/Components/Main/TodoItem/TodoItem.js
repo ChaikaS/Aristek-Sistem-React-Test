@@ -2,10 +2,7 @@ import "./todoItem.scss";
 import contentEditIcon from "../../../image/edit-icon.png";
 import contentDeleteIcon from "../../../image/delete-icon.png";
 import { useDispatch } from "react-redux";
-import { deletedTodoItem, deletedTodoItemCompletedList, updateInputText } from "../../../store/actions/actionsTodo.js";
-import { postItemToCompletedList, deleteTodoItem } from "../../../store/middleware/middlewareTodo.js";
-import { useEffect } from "react";
-import { apiTodoList } from "../../../store/middleware/middlewareTodo";
+import { postItemToCompletedList, deleteTodoItem, editTodoItem } from "../../../store/middleware/middlewareTodo.js";
 
 export default function TodoItem({ item, title }) {
   const editIcon = <img src={contentEditIcon} alt="edit icon" />;
@@ -15,19 +12,14 @@ export default function TodoItem({ item, title }) {
     dispatch(deleteTodoItem(item.completed, item.id));
   };
   const completedTodoHandler = () => {
-    console.log(item.completed, item.id, item);
-
     dispatch(postItemToCompletedList(item.completed, item.id, item));
   };
   const editTodoHandler = () => {
-    dispatch(updateInputText(item.title, item.id));
+    dispatch(editTodoItem(item.title, item.id));
   };
   const checkedHandler = () => {
     return "";
   };
-  // useEffect(() => {
-  //   dispatch(apiTodoList(item.completed, item.id, item));
-  // }, []);
 
   return (
     <div className="todo__item">
