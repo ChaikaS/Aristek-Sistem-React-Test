@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import TodoItem from "../TodoItem/TodoItem";
-import { getTodoList } from "../../../store/middleware/middlewareTodo";
+import { getTodoList } from "../../../store/actions/actionsTodo.js";
 import { useEffect } from "react";
 
 export default function TodoList() {
@@ -12,7 +12,7 @@ export default function TodoList() {
   }, []);
 
   return (
-    <div className="main__list-items">
+    <div>
       {todoList.map((item) => (
         <TodoItem title={item.title} key={item.id} item={item} />
       ))}

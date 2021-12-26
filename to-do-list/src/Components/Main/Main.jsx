@@ -1,18 +1,17 @@
 import "./main.scss";
-import contentImageBar from "../../image/image-bar.png";
-import InputForm from "../Main/InputForm/InputForm.js";
-import CompletedList from "../CompletedList/CompletedList.js";
-import TodoList from "./TodoList/TodoList.js";
+import contentImageBar from "../../assets/image/image-bar.png";
+import InputForm from "./InputForm/InputForm.jsx";
+import CompletedList from "../CompletedList/CompletedList.jsx";
+import TodoList from "./TodoList/TodoList.jsx";
 import { useSelector } from "react-redux";
 
 export default function Main() {
-  const imageBar = <img src={contentImageBar} alt={"icon bar"} />;
   const completedList = useSelector((state) => state.completedList.flat());
   const todoList = useSelector((state) => state.todoList.flat());
 
   return (
     <div className="main__conteiner">
-      <div className="main__bar">{imageBar}</div>
+      <div className="main__bar">{<img src={contentImageBar} alt="icon bar" />}</div>
       <div className="main__conteiner-todo-list">
         <div className="main__todo-list">
           <InputForm />

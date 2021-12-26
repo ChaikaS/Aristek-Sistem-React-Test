@@ -19,7 +19,7 @@ function createdTodoItem(title, id) {
     payload: { title: title, completed: false, id: id, edit: false },
   };
 }
-function completedTodoItem(id) {
+function changeCompletedTodoItem(id) {
   return {
     type: COMPLETED_ITEM,
     payload: {
@@ -27,7 +27,7 @@ function completedTodoItem(id) {
     },
   };
 }
-function completedTodoItemCompletedList(id) {
+function changeCompletedTodoItemCompletedList(id) {
   return {
     type: COMPLETED_ITEM_COMPLETED_LIST,
     payload: {
@@ -107,4 +107,82 @@ function receiveCompletedTodoListData(json) {
     },
   };
 }
-export { createdTodoItem, completedTodoItem, deletedTodoItem, postToCompletedList, completedTodoItemCompletedList, deletedTodoItemCompletedList, postToTodoList, updateInputText, saveUpdateInputText, nullUpdateInputText, receiveTodoListData, receiveCompletedTodoListData };
+
+export const postItemToCompletedList = (completed, id, item) => (dispatch) => {
+  if (completed === false) {
+    dispatch(postToCompletedList(item));
+    dispatch(changeCompletedTodoItemCompletedList(id));
+    dispatch(deletedTodoItem(id));
+  } else {
+    dispatch(deletedTodoItemCompletedList(id));
+    dispatch(postToTodoList(item));
+
+    dispatch(changeCompletedTodoItem(id));
+  }
+};
+export const getTodoList = () => async (dispatch) => {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/todos");
+    const json = await response.json();
+    dispatch(receiveTodoListData(json));
+    dispatch(receiveCompletedTodoListData(json));
+  } catch (e) {
+    console.error(e);
+  }
+};
+export const postTodoItem = (text, id) => async (dispatch) => {
+  try {
+    await fetch("https://jsonplaceholder.typicode.com/todos", {
+      method: "POST",
+      body: JSON.stringify({
+        title: text,
+        id: id,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+    dispatch(createdTodoItem(text, id));
+  } catch (e) {
+    console.error(e);
+  }
+};
+export const editTodoItem = (text, id) => async (dispatch) => {
+  try {
+    await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        title: text,
+        id: id,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+    dispatch(updateInputText(text, id));
+  } catch (e) {
+    console.error(e);
+  }
+};
+export const deleteTodoItem = (completed, id) => async (dispatch) => {
+  try {
+    await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+      method: "DELETE",
+      body: JSON.stringify({
+        id: id,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+    if (completed === false) {
+      dispatch(deletedTodoItem(id));
+    } else {
+      dispatch(deletedTodoItemCompletedList(id));
+    }
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export { createdTodoItem, deletedTodoItem, postToCompletedList, deletedTodoItemCompletedList, postToTodoList, updateInputText, saveUpdateInputText, nullUpdateInputText, receiveTodoListData, receiveCompletedTodoListData };

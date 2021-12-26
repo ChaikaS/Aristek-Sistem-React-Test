@@ -11,7 +11,7 @@ export default function todoCompletedTasks(state = initialState.todoCompletedTas
     }
     case POST_ITEM_TO_COMPLETED_LIST: {
       const newState = [...state];
-      newState.push(action.payload.item);
+      newState.unshift(action.payload.item);
       return newState;
     }
     case DELETED_ITEM_COMPLETED_LIST: {
@@ -20,9 +20,8 @@ export default function todoCompletedTasks(state = initialState.todoCompletedTas
       return remove;
     }
     case RECEIVE_COMPLETED_TODO_LIST_DATA: {
-      const arrTodoTasks = action.payload.todoTasks;
       const newState = [...state];
-      arrTodoTasks.map((item) => {
+      action.payload.todoTasks.map((item) => {
         if (item.completed === true) {
           newState.push(item);
         }

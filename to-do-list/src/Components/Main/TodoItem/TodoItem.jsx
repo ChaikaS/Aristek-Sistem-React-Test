@@ -1,8 +1,8 @@
 import "./todoItem.scss";
-import contentEditIcon from "../../../image/edit-icon.png";
-import contentDeleteIcon from "../../../image/delete-icon.png";
+import contentEditIcon from "../../../assets/image/edit-icon.png";
+import contentDeleteIcon from "../../../assets/image/delete-icon.png";
 import { useDispatch } from "react-redux";
-import { postItemToCompletedList, deleteTodoItem, editTodoItem } from "../../../store/middleware/middlewareTodo.js";
+import { postItemToCompletedList, deleteTodoItem, editTodoItem } from "../../../store/actions/actionsTodo.js";
 
 export default function TodoItem({ item, title }) {
   const editIcon = <img src={contentEditIcon} alt="edit icon" />;
@@ -17,13 +17,10 @@ export default function TodoItem({ item, title }) {
   const editTodoHandler = () => {
     dispatch(editTodoItem(item.title, item.id));
   };
-  const checkedHandler = () => {
-    return "";
-  };
 
   return (
     <div className="todo__item">
-      <input onClick={completedTodoHandler} onChange={checkedHandler} type="checkbox" checked={`${item.completed ? "checked" : ""}`} className="todo__checkbox " />
+      <input onChange={completedTodoHandler} type="checkbox" checked={item.completed ? "checked" : ""} className="todo__checkbox " />
       <label className={`todo__text ${item.completed ? "completed" : ""}`}>{title}</label>
       <div onClick={editTodoHandler} className={`todo__edit-icon ${item.completed ? "display-none" : ""}`}>
         {editIcon}

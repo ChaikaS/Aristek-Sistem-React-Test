@@ -7,8 +7,9 @@ export const initialState = {
 export default function todoTasks(state = initialState.todoTasks, action) {
   switch (action.type) {
     case ADD_ITEM: {
-      const { completed, id, title } = action.payload;
-      return [...state, { completed, id, title }];
+      const newState = [...state];
+      newState.unshift(action.payload);
+      return newState;
     }
     case COMPLETED_ITEM: {
       return [...state.map((el) => (el.id === action.payload.id ? { ...el, completed: !el.completed } : el))];

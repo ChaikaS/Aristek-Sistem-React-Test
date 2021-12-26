@@ -2,7 +2,7 @@ import "./inputForm.scss";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateInputText, saveUpdateInputText, nullUpdateInputText } from "../../../store/actions/actionsTodo.js";
-import { postTodoItem } from "../../../store/middleware/middlewareTodo";
+import { postTodoItem } from "../../../store/actions/actionsTodo.js";
 import { v4 as uuidv4 } from "uuid";
 
 export default function InputForm() {
